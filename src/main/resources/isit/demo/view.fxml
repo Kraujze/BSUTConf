@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox stylesheets="@style.css"
+      fx:controller="isit.demo.ViewController"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+       <HBox style="-fx-padding: 45 39 63 51;">
+              <!--<ImageView id="machineImage">
+                 <Image url="@images/Установка.png" />
+              </ImageView>-->
+            <VBox fx:id="modelBox">
+
+            </VBox>
+            <VBox>
+             <HBox style="-fx-padding: 10 0 10 40;">
+                <Label fx:id="label1" text="Температура воздуха, ℃: " />
+                <TextField style="-fx-max-width: 40" editable="false" fx:id="airTemperatureField"></TextField>
+             </HBox>
+             <HBox style="-fx-padding: 10 0 10 40;">
+                <Label style="-fx-padding: 0" fx:id="label2" text="Мощность, Вт (20...70): " />
+                <TextField style="-fx-max-width: 40" fx:id="powerField"></TextField>
+             </HBox>
+            </VBox>
+       </HBox>
+       <VBox alignment="CENTER">
+           <Pane style="-fx-padding: 0 0 20 0">
+               <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn1" text="1" />
+               <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn2" text="2"/>
+               <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn3" text="3"/>
+               <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn4" text="4"/>
+               <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn5" text="5"/>
+               <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn6" text="6"/>
+               <ImageView fx:id="tumblerView">
+                   <Image url="@images/Тумблер1.png" />
+               </ImageView>
+           </Pane>
+          <HBox alignment="CENTER" style="-fx-padding: 0 0 156 0">
+             <Label fx:id="label3" text="tст, ℃: " />
+             <TextField style="-fx-max-width: 100" editable="false" fx:id="temperatureField"></TextField>
+          </HBox>
+           <Button styleClass="startBtn" fx:id="startBtn" onAction="#start" text="Запуск"/>
+       </VBox>
+</VBox>

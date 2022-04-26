@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Main-Class: isit.demo.Application
+Class-Path: javafx-controls-18-ea+6-win.jar javafx-fxml-18-ea+6-win.jar 
+ javafx-base-18-ea+6.jar jimObjModelImporterJFX.jar jimObjModelImporterJ
+ FX.jar javafx-graphics-18-ea+6.jar javafx-fxml-18-ea+6.jar javafx-graph
+ ics-18-ea+6-win.jar javafx-base-18-ea+6-win.jar javafx-controls-18-ea+6
+ .jar
+
