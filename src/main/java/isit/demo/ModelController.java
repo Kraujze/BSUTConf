@@ -5,12 +5,10 @@ import com.interactivemesh.jfx.importer.obj.ObjModelImporter;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CullFace;
@@ -18,6 +16,7 @@ import javafx.scene.shape.DrawMode;
 import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+
 import java.net.URL;
 
 public class ModelController
@@ -29,6 +28,7 @@ public class ModelController
     public static final double MODEL_Z_OFFSET = 0;
     public static double mouseX = 0;
     public static double mouseY = 0;
+    public static final double scaleModifier = 10;
 
     public MeshView pipeMeshView;
     public MeshView heaterMeshView;
@@ -47,9 +47,9 @@ public class ModelController
         meshView.setTranslateX(VIEWPORT_SIZE_X / 2 + MODEL_X_OFFSET);
         meshView.setTranslateY(VIEWPORT_SIZE_Y / 2 + MODEL_Y_OFFSET);
         meshView.setTranslateZ(MODEL_Z_OFFSET);
-        meshView.setScaleX(50);
-        meshView.setScaleY(50);
-        meshView.setScaleZ(50);
+        meshView.setScaleX(200);
+        meshView.setScaleY(200);
+        meshView.setScaleZ(200);
         return meshView;
     }
     public MeshView loadModel(String modelName) {
@@ -67,12 +67,10 @@ public class ModelController
      public Group buildScene() {
         pipeMeshView = prepareMeshView(loadModel("pipe.obj"));
         heaterMeshView = prepareMeshView(loadModel("heater.obj"));
-        heaterMeshView.setScaleY(40);
+        heaterMeshView.setScaleY(120);
         heaterMeshView.setTranslateY(heaterMeshView.getTranslateY() + 1);
-         heaterMeshView.setCullFace(CullFace.NONE);
         Group group = new Group();
         group.getChildren().addAll(pipeMeshView, heaterMeshView);
-
         return group;
     }
 
@@ -81,29 +79,27 @@ public class ModelController
         Camera camera = new PerspectiveCamera();
         camera.setTranslateZ(0);
         scene3d.setFill(Color.AZURE);
-
+        scene3d.relocate(0,0);
         xRotate = new Rotate(0, VIEWPORT_SIZE_X / 2, VIEWPORT_SIZE_Y / 2, 0, Rotate.X_AXIS);
         yRotate = new Rotate(0, VIEWPORT_SIZE_X / 2, VIEWPORT_SIZE_Y / 2, 0, Rotate.Y_AXIS);
         zRotate = new Rotate(0, VIEWPORT_SIZE_X / 2, VIEWPORT_SIZE_Y / 2, 0, Rotate.Z_AXIS);
 
         camera.getTransforms().addAll(xRotate, yRotate, zRotate);
 
-        scene3d.setOnScroll(new EventHandler<ScrollEvent>() {
-            @Override public void handle(ScrollEvent event) {
-                if (event.getDeltaY() > 0) {
-                        group.setScaleX(group.getScaleX() + 1);
-                        group.setScaleY(group.getScaleY() + 1);
-                        group.setScaleZ(group.getScaleZ() + 1);
-                } else {
-                        group.setScaleX(group.getScaleX() - 1);
-                        group.setScaleY(group.getScaleY() - 1);
-                        group.setScaleZ(group.getScaleZ() - 1);
-                    }
-                /*System.out.printf("Angle: %f | PivotY: %f | PivotZ: %f\n",
-                        zRotate.getAngle(),
-                        zRotate.getPivotX(),
-                        zRotate.getPivotY()
-                );*/
+        scene3d.setOnScroll(event -> {
+            if (event.getDeltaY() > 0) {
+                group.getChildren().forEach((e) -> {
+                    e.setScaleX(e.getScaleX() + 1 * scaleModifier);
+                    e.setScaleY(e.getScaleY() + 1 * scaleModifier);
+                    e.setScaleZ(e.getScaleZ() + 1 * scaleModifier);
+                });
+
+            } else {
+                group.getChildren().forEach((e) -> {
+                    e.setScaleX(e.getScaleX() - 1 * scaleModifier);
+                    e.setScaleY(e.getScaleY() - 1 * scaleModifier);
+                    e.setScaleZ(e.getScaleZ() - 1 * scaleModifier);
+                });
             }
         });
         scene3d.setOnMousePressed(event -> {
@@ -117,11 +113,7 @@ public class ModelController
                     double mouseXnew = event.getSceneX();
                     yRotate.setAngle(yRotate.getAngle() - (mouseX - mouseXnew));
                     mouseX = mouseXnew;
-                    /*double mouseYnew = event.getSceneY();
-                    zRotate.setAngle(zRotate.getAngle() - (mouseY - mouseYnew));
-                    mouseY = mouseYnew;*/
                 }
-                //System.out.printf("RotateX: %f | RotateY: %f | RotateZ: %f\n", xRotate.getAngle(), yRotate.getAngle(), zRotate.getAngle());
         });
 
         scene3d.setCamera(camera);
@@ -159,7 +151,7 @@ public class ModelController
                         .then(CullFace.FRONT)
                         .otherwise(CullFace.NONE)
         );
-        CheckBox wireframe = new CheckBox("Wireframe");
+        CheckBox wireframe = new CheckBox("\"Прозрачная\" труба");
         pipeMeshView.drawModeProperty().bind(
                 Bindings.when(
                                 wireframe.selectedProperty())

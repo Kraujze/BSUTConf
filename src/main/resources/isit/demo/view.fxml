@@ -4,14 +4,14 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox stylesheets="@style.css"
+<!--<VBox stylesheets="@style.css"
       fx:controller="isit.demo.ViewController"
       xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1">
        <HBox style="-fx-padding: 45 39 63 51;">
-              <!--<ImageView id="machineImage">
+              &lt;!&ndash;<ImageView id="machineImage">
                  <Image url="@images/Установка.png" />
-              </ImageView>-->
+              </ImageView>&ndash;&gt;
             <VBox fx:id="modelBox">
 
             </VBox>
@@ -19,6 +19,7 @@
              <HBox style="-fx-padding: 10 0 10 40;">
                 <Label fx:id="label1" text="Температура воздуха, ℃: " />
                 <TextField style="-fx-max-width: 40" editable="false" fx:id="airTemperatureField"></TextField>
+                 <Button GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#editButtonClick" fx:id="editTemperatureBtn"/>
              </HBox>
              <HBox style="-fx-padding: 10 0 10 40;">
                 <Label style="-fx-padding: 0" fx:id="label2" text="Мощность, Вт (20...70): " />
@@ -42,6 +43,62 @@
              <Label fx:id="label3" text="tст, ℃: " />
              <TextField style="-fx-max-width: 100" editable="false" fx:id="temperatureField"></TextField>
           </HBox>
-           <Button styleClass="startBtn" fx:id="startBtn" onAction="#start" text="Запуск"/>
+           <Button styleClass="startBtn" fx:id="startBtn" onAction="#start" text="Запуск" minWidth="100" minHeight="45"/>
        </VBox>
+</VBox>-->
+<VBox stylesheets="@style.css"
+        fx:controller="isit.demo.ViewController"
+        xmlns="http://javafx.com/javafx/8"
+        xmlns:fx="http://javafx.com/fxml/1"
+        styleClass="body"
+        style="-fx-padding: 20 0"
+        alignment="CENTER">
+<GridPane>
+    <columnConstraints>
+        <ColumnConstraints prefWidth="630"/>
+        <ColumnConstraints prefWidth="384" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="201"/> <!--457 with table-->
+        <RowConstraints prefHeight="492"/> <!--236-->
+        <RowConstraints prefHeight="75"/>
+    </rowConstraints>
+
+    <!--Model view window-->
+    <VBox fx:id="modelBox" GridPane.rowIndex="0" GridPane.columnIndex="0"
+        style="-fx-padding: 0 15" GridPane.rowSpan="2"/>
+
+    <!--Fields block-->
+    <GridPane GridPane.rowIndex="0" GridPane.columnIndex="1"
+                style="-fx-padding: 20 15" hgap="5" vgap="15">
+        <Label GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="label1" text="Температура воздуха, ℃: " />
+        <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"
+                   editable="false" style="-fx-max-width: 40" fx:id="airTemperatureField">0</TextField>
+        <Button GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#editButtonClick" fx:id="editTemperatureBtn"/>
+        <Label GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-padding: 0" fx:id="label2" text="Мощность, Вт (20...70): " />
+        <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-max-width: 40" fx:id="powerField">20</TextField>
+    </GridPane>
+
+    <!--Tumbler-->
+    <VBox alignment="TOP_CENTER" style="-fx-padding: 0" GridPane.rowIndex="1" GridPane.columnIndex="1">
+        <Pane>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn1" text="1" />
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn2" text="2"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn3" text="3"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn4" text="4"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn5" text="5"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn6" text="6"/>
+            <ImageView fx:id="tumblerView">
+                <Image url="@images/Тумблер1.png" />
+            </ImageView>
+        </Pane>
+        <HBox style="-fx-padding: 0 0 0 20">
+            <Label fx:id="label3" text="Температура, ℃: " />
+            <TextField style="-fx-max-width: 100" prefHeight="30" editable="false" fx:id="temperatureField">...</TextField>
+        </HBox>
+    </VBox>
+</GridPane>
+    <!--Start button-->
+    <Button styleClass="startBtn" fx:id="startBtn" onAction="#start" text="Запуск" minWidth="100" minHeight="45"
+        GridPane.rowIndex="2" GridPane.columnIndex="0"/>
 </VBox>
