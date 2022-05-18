@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isit.demo.DocviewController">
+    <ScrollPane fx:id="scrollPane">
+        <VBox prefWidth="800" alignment="center" fx:id="content">
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="1044" url="@../pages/conf-1.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="998" url="@../pages/conf-2.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="988" url="@../pages/conf-3.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="990" url="@../pages/conf-4.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="973" url="@../pages/conf-5.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="972" url="@../pages/conf-6.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="966" url="@../pages/conf-7.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="972" url="@../pages/conf-8.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="956" url="@../pages/conf-9.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="942" url="@../pages/conf-10.jpg"/>
+            </ImageView>
+            <ImageView>
+                <Image requestedWidth="800" requestedHeight="599" url="@../pages/conf-11.jpg"/>
+            </ImageView>
+        </VBox>
+    </ScrollPane>
+</VBox>

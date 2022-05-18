@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox stylesheets="@../styles/style.css"
+        fx:controller="isit.demo.ViewController"
+        xmlns="http://javafx.com/javafx/8"
+        xmlns:fx="http://javafx.com/fxml/1"
+        styleClass="body"
+        style="-fx-padding: 20 0"
+        alignment="CENTER">
+<GridPane>
+    <columnConstraints>
+        <ColumnConstraints prefWidth="640"/>
+        <ColumnConstraints prefWidth="384" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="90"/> <!--201, 457 with table-->
+        <RowConstraints prefHeight="503"/> <!--492, 503-->
+        <RowConstraints prefHeight="100"/> <!--236-->
+        <RowConstraints prefHeight="75"/>
+    </rowConstraints>
+
+    <!--Model view window-->
+    <VBox fx:id="modelBox" GridPane.rowIndex="0" GridPane.columnIndex="0"
+        style="-fx-padding: 0 15" GridPane.rowSpan="3"/>
+
+    <!--Fields block-->
+    <GridPane GridPane.rowIndex="0" GridPane.columnIndex="1"
+                style="-fx-padding: 20 0 0 15" hgap="5" vgap="15">
+        <Label GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="label1" text="Температура воздуха, ℃ (15...40): " />
+        <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" onKeyTyped="#onAirEdit"
+                   style="-fx-max-width: 80" fx:id="airTemperatureField">0</TextField>
+        <!--<Button GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#editButtonClick" fx:id="editTemperatureBtn"/>-->
+        <Label GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-padding: 0" fx:id="label2" text="Мощность, Вт (0...100): " />
+        <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-max-width: 80" fx:id="powerField" onKeyTyped="#onPowerEdit">20</TextField>
+    </GridPane>
+
+    <!--Tumbler-->
+    <VBox alignment="TOP_CENTER" style="-fx-padding: 80 0 0 0"
+          GridPane.rowIndex="1" GridPane.columnIndex="1">
+        <Pane>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn1" text="1" />
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn2" text="2"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn3" text="3"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn4" text="4"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn5" text="5"/>
+            <Button disable="true" onAction="#turnTumbler" styleClass="tumbler_btn" fx:id="tumblerBtn6" text="6"/>
+            <ImageView fx:id="tumblerView">
+                <Image url="@../images/Тумблер1.png" />
+            </ImageView>
+        </Pane>
+        <HBox style="-fx-padding: 0 0 0 20">
+            <Label fx:id="label3" text="Температура, ℃: " />
+            <TextField style="-fx-max-width: 100" prefHeight="30" editable="false" fx:id="temperatureField">...</TextField>
+        </HBox>
+    </VBox>
+    <TableView stylesheets="@../styles/tableview.css" fx:id="tableView"
+               style="-fx-background-insets: 20; -fx-border-insets: 20;"
+               GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <placeholder>
+            <Label text="Для заполнения таблицы запустите установку и переключайте кнопки тумблера" />
+        </placeholder>
+        <columns>
+            <TableColumn fx:id="powerCol" prefWidth="120" text="Мощность, Вт" sortable="false" resizable="false" reorderable="false"/>
+            <TableColumn  text="Температура в точках установки термопар, ℃" sortable="false" resizable="false" reorderable="false">
+                <columns>
+                    <TableColumn fx:id="tempCol_1" prefWidth="65" text="1" sortable="false" resizable="false" reorderable="false"/>
+                    <TableColumn fx:id="tempCol_2" prefWidth="65" text="2" sortable="false" resizable="false" reorderable="false"/>
+                    <TableColumn fx:id="tempCol_3" prefWidth="65" text="3" sortable="false" resizable="false" reorderable="false"/>
+                    <TableColumn fx:id="tempCol_4" prefWidth="65" text="4" sortable="false" resizable="false" reorderable="false"/>
+                    <TableColumn fx:id="tempCol_5" prefWidth="65" text="5" sortable="false" resizable="false" reorderable="false"/>
+                    <TableColumn fx:id="tempCol_6" prefWidth="65" text="6" sortable="false" resizable="false" reorderable="false"/>
+                </columns>
+            </TableColumn>
+            <TableColumn fx:id="avgTempCol" prefWidth="270" text="Средняя температура стенки, ℃" sortable="false" resizable="false" reorderable="false"/>
+            <TableColumn fx:id="airTempCol" prefWidth="237" text="Температура воздуха, ℃" sortable="false" resizable="false" reorderable="false"/>
+        </columns>
+    </TableView>
+</GridPane>
+
+    <BorderPane GridPane.rowIndex="2" GridPane.columnIndex="0">
+        <!--Stop button-->
+        <left>
+            <Button disable="true" styleClass="startBtn" fx:id="stopBtn" onAction="#stop" text="Выключить" minWidth="100" minHeight="45"/>
+        </left>
+        <!--Start button-->
+        <center>
+            <Button styleClass="startBtn" fx:id="startBtn" onAction="#start" text="Запуск" minWidth="100" minHeight="45"/>
+        </center>
+        <!--Theory window button-->
+        <right>
+            <Button styleClass="startBtn" fx:id="theoryBtn" onAction="#gotoTheory" text="Теория" minWidth="100" minHeight="45"/>
+        </right>
+
+    </BorderPane>
+</VBox>

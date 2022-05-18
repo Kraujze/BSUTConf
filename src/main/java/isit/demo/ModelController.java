@@ -32,6 +32,7 @@ public class ModelController
 
     public MeshView pipeMeshView;
     public MeshView heaterMeshView;
+    public MeshView thermoMeshView;
     public Rotate xRotate;
     public Rotate yRotate;
     public Rotate zRotate;
@@ -47,15 +48,15 @@ public class ModelController
         meshView.setTranslateX(VIEWPORT_SIZE_X / 2 + MODEL_X_OFFSET);
         meshView.setTranslateY(VIEWPORT_SIZE_Y / 2 + MODEL_Y_OFFSET);
         meshView.setTranslateZ(MODEL_Z_OFFSET);
-        meshView.setScaleX(200);
-        meshView.setScaleY(200);
-        meshView.setScaleZ(200);
+        meshView.setScaleX(500);
+        meshView.setScaleY(500);
+        meshView.setScaleZ(500);
         return meshView;
     }
     public MeshView loadModel(String modelName) {
         ObjModelImporter objImporter = new ObjModelImporter();
         try {
-            URL modelUrl = this.getClass().getResource(modelName);
+            URL modelUrl = this.getClass().getResource("models/" + modelName);
             objImporter.read(modelUrl);
         }
         catch (ImportException e) {
@@ -67,10 +68,11 @@ public class ModelController
      public Group buildScene() {
         pipeMeshView = prepareMeshView(loadModel("pipe.obj"));
         heaterMeshView = prepareMeshView(loadModel("heater.obj"));
-        heaterMeshView.setScaleY(120);
+        thermoMeshView = prepareMeshView(loadModel("thermo.obj"));
+//        heaterMeshView.setScaleY(120);
         heaterMeshView.setTranslateY(heaterMeshView.getTranslateY() + 1);
         Group group = new Group();
-        group.getChildren().addAll(pipeMeshView, heaterMeshView);
+        group.getChildren().addAll(pipeMeshView, heaterMeshView, thermoMeshView);
         return group;
     }
 
@@ -78,7 +80,7 @@ public class ModelController
         SubScene scene3d = new SubScene(group, VIEWPORT_SIZE_X, VIEWPORT_SIZE_Y, true, SceneAntialiasing.BALANCED);
         Camera camera = new PerspectiveCamera();
         camera.setTranslateZ(0);
-        scene3d.setFill(Color.AZURE);
+        scene3d.setFill(Color.web("#3f474f"));
         scene3d.relocate(0,0);
         xRotate = new Rotate(0, VIEWPORT_SIZE_X / 2, VIEWPORT_SIZE_Y / 2, 0, Rotate.X_AXIS);
         yRotate = new Rotate(0, VIEWPORT_SIZE_X / 2, VIEWPORT_SIZE_Y / 2, 0, Rotate.Y_AXIS);

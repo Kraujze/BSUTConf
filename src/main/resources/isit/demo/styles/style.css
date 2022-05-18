@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Nunito";
+    src: url('../fonts/Nunito.ttf');
+}
+Label, CheckBox {
+    -fx-text-fill: white;
+}
+Button, TextField {
+    -fx-background-radius: 0;
+}
+.enabled {
+    -fx-background-color: #00b2ed;
+}
+.body {
+    -fx-background-color: #30363D;
+}
+.checkError {
+    -fx-border-color: red;
+}
+.checkSuccess {
+    -fx-border-color: #00ce4a;
+}
+
+.tumbler_btn {
+    -fx-pref-width: 36;
+    -fx-pref-height: 36;
+    -fx-background-radius: 50%;
+    -fx-background-color: #fff;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-border-radius: 50%;
+    -fx-cursor: hand;
+}
+.tumbler_btn:hover {
+    -fx-background-color: #0083b9;
+}
+.active {
+    -fx-background-color: #00b2ed;
+}
+.startBtn {
+    -fx-text-fill: white;
+    -fx-background-color: #00b2ed;
+    -fx-background-radius: 0;
+
+}
+.startBtn:hover {
+    -fx-background-color: #0083b9;
+    -fx-cursor: hand;
+}
+* {
+    -fx-font-family: 'Nunito';
+    -fx-font-size: 16;
+    -fx-font-weight: bolder;
+}

@@ -18,18 +18,24 @@ public class Tumbler {
     }
     public void calculate(double averageTemperature) {
         double at = averageTemperature/1000 + Math.random() * (0.5-(-0.5) - 0.5);
-        values[0] = (averageTemperature + (at/2) + (at/4)) * 6;
-        values[1] = (averageTemperature + ((at/2)*4)) * 6;
-        values[2] = (averageTemperature - ((at/2)*2 - 2 * at)) * 6;
-        values[3] = (averageTemperature - ((at/2)*2 + 2 * at)) * 6;
-        values[4] = (averageTemperature - at) * 6;
-        values[5] = (averageTemperature + at/2 - (at/4)) * 6;
+        values[0] = Math.round(((averageTemperature + (at/2) + (at/4)) * 6) * 10.0) / 10.0;
+        values[1] = Math.round(((averageTemperature + ((at/2)*4)) * 6) * 10.0) / 10.0;
+        values[2] = Math.round(((averageTemperature - ((at/2)*2 - 2 * at)) * 6) * 10.0) / 10.0;
+        values[3] = Math.round(((averageTemperature - ((at/2)*2 + 2 * at)) * 6) * 10.0) / 10.0;
+        values[4] = Math.round(((averageTemperature - at) * 6) * 10.0) / 10.0;
+        values[5] = Math.round(((averageTemperature + at/2 - (at/4)) * 6) * 10.0) / 10.0;
 
     }
     public double getTemperatureAtPos(int position) {
         return values[position - 1];
     }
-
+    public double getAverageTemperature() {
+        double avg = 0;
+        for (double v : values) {
+            avg += v;
+        }
+        return Math.round(avg / 6 * 10.0) / 10.0;
+    }
     public void setView(String imageName) {
         imageView.setImage(new Image(this.getClass().getResourceAsStream(imageName)));
     }
@@ -50,12 +56,14 @@ public class Tumbler {
         }
     }
     public void switchButtonToActive(int buttonNumber) {
-        for (Button button : buttonList) {
-            if (button == buttonList.get(buttonNumber - 1)) {
-                button.getStyleClass().add("active");
-            } else {
-                button.getStyleClass().removeAll("active");
+        if (buttonNumber > 0) {
+            for (Button button : buttonList) {
+                if (button == buttonList.get(buttonNumber - 1)) {
+                    button.getStyleClass().add("active");
+                } else {
+                    button.getStyleClass().removeAll("active");
+                }
             }
-        }
+        } else for (Button button : buttonList) button.getStyleClass().removeAll("active");
     }
 }
