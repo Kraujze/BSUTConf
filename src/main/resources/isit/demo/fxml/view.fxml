@@ -13,8 +13,8 @@
         alignment="CENTER">
 <GridPane>
     <columnConstraints>
-        <ColumnConstraints prefWidth="640"/>
-        <ColumnConstraints prefWidth="384" />
+        <ColumnConstraints percentWidth="62"/>
+        <ColumnConstraints percentWidth="38" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints prefHeight="90"/> <!--201, 457 with table-->
@@ -57,7 +57,7 @@
             <TextField style="-fx-max-width: 100" prefHeight="30" editable="false" fx:id="temperatureField">...</TextField>
         </HBox>
     </VBox>
-    <TableView stylesheets="@../styles/tableview.css" fx:id="tableView"
+    <TableView stylesheets="@../styles/tableview.css" fx:id="tableView" prefWidth="1024"
                style="-fx-background-insets: 20; -fx-border-insets: 20;"
                GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2">
         <placeholder>

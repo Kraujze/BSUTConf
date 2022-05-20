@@ -43,6 +43,9 @@
     -fx-background-color: transparent;
 }
 
+.table-view .filler {
+    -fx-background-color: #30363D;
+}
 .table-view:focused{
     -fx-background-color: transparent;
 }

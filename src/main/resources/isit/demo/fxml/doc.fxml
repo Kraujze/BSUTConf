@@ -14,7 +14,7 @@
                 <Image requestedWidth="800" requestedHeight="998" url="@../pages/conf-2.jpg"/>
             </ImageView>
             <ImageView>
-                <Image requestedWidth="800" requestedHeight="988" url="@../pages/conf-3.jpg"/>
+                <Image requestedWidth="800" requestedHeight="931" url="@../pages/conf-3.jpg"/>
             </ImageView>
             <ImageView>
                 <Image requestedWidth="800" requestedHeight="990" url="@../pages/conf-4.jpg"/>
